@@ -1,8 +1,15 @@
 @use './variables' as v;
 
 body {
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 16px;
+  font-optical-sizing: auto;
+  font-style: normal;
   font-weight: 500;
   color: $color-text;
   background-color: $color-general2;
+}
+
+.base-font {
+  
 }
