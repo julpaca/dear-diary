@@ -1,13 +1,19 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref } from 'vue'
 
-  const input = ref();
+  const input = ref()
+  const emit = defineEmits(["emit-value"])
+
+  const emitValue = () => {
+    emit("get-input-value", input.value)
+  }
 
 </script>
 
 <template>
   <input
-
+    v-model="input"
+    @keyup.enter="emitValue"
   />
 </template>
 
