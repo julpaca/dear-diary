@@ -1,8 +1,8 @@
-<script setup>
+<script setup lang="ts">
   import { ref } from 'vue'
 
   const input = ref()
-  const emit = defineEmits(["emit-value"])
+  const emit = defineEmits(["get-input-value"])
 
   const emitValue = () => {
     emit("get-input-value", input.value)

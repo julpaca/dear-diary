@@ -11,9 +11,10 @@ import NoteDayForm from '../widgets/note-day-form/ui/NoteDayForm.vue'
     </header>
   </div>
   <main>
+
     <NoteDayForm>
-      
     </NoteDayForm>
+  
   </main>
 </template>
 
