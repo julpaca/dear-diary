@@ -42,12 +42,7 @@ function selectValue(step: number) {
         :class="{ 'is-active': isActive(step) }"
         @click="selectValue(step)" @mouseenter="hoverValue = step" @mouseleave="hoverValue = null"
       >
-      <CrimsomRose :fill="getIconColor(step)" />
-        <!-- Здесь будет ваша SVG-картинка -->
-        <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z"
-            :fill="getIconColor(step)" />
-        </svg> -->
+      <CrimsomRose fill="getIconColor(step)" />
       </div>
     </div>
     <p>Выбрано: {{ selectedValue }}</p>

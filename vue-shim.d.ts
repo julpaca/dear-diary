@@ -5,3 +5,6 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+
+/// <reference types="vite/client" />
+/// <reference types="vite-svg-loader" />
