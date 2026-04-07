@@ -35,14 +35,9 @@ function selectValue(step: number) {
 <template>
   <div class="custom-range">
     <div class="steps">
-      <div
-        v-for="step in steps"
-        :key="step"
-        class="step"
-        :class="{ 'is-active': isActive(step) }"
-        @click="selectValue(step)" @mouseenter="hoverValue = step" @mouseleave="hoverValue = null"
-      >
-      <CrimsomRose fill="getIconColor(step)" />
+      <div v-for="step in steps" :key="step" class="step" :class="{ 'is-active': isActive(step) }"
+        @click="selectValue(step)" @mouseenter="hoverValue = step" @mouseleave="hoverValue = null">
+        <CrimsomRose fill="getIconColor(step)" />
       </div>
     </div>
     <p>Выбрано: {{ selectedValue }}</p>

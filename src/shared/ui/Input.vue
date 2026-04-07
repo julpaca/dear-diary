@@ -5,7 +5,7 @@
   const emit = defineEmits(["get-input-value"])
 
   const emitValue = () => {
-    emit("get-input-value", input.value)
+    emit("get-input-value", input.value) //название функции(?), всё остальное - аргументы
   }
 
 </script>
