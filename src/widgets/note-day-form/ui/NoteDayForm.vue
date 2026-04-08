@@ -1,14 +1,27 @@
 <script setup lang="ts">
-  import { MoodRange } from '..';
-  import MoodPopup from '../../../shared/ui/MoodPopup.vue'
-  import Input from '../../../shared/ui/Input.vue';
-  import { MOODS } from '../mocks/moods';
+import { MoodRange } from '..';
+import MoodPopup from '../../../shared/ui/MoodPopup.vue'
+import Input from '../../../shared/ui/Input.vue';
+import { MOODS } from '../mocks/moods';
+import { ref } from 'vue';
+
+const chosenMoods = ref<string[]>([])
+
+const changeMoodletsList = (moodlet: string) => {
+  if (chosenMoods.value.includes(moodlet)) {
+    chosenMoods.value = chosenMoods.value.filter(item => item !== moodlet)
+  } else {
+    chosenMoods.value = [...chosenMoods.value, moodlet]
+  }
+
+  console.log('chosenMoods: ', chosenMoods.value)
+}
 </script>
 
 <template>
   <div class="container">
     <form class="form">
-      
+
       <label class="label" for="day-rate">
         <h2 class="heading">Rate this day from 1 to 10
           <div class="heading_bottom-decoration"></div>
@@ -16,7 +29,7 @@
         </h2>
         <MoodRange />
       </label>
-      
+
       <label class="label" for="day-rate">
         <h2 class="heading">How would you describe this day?
           <div class="heading_bottom-decoration"></div>
@@ -25,9 +38,9 @@
         <p>Choose the appropriate words from the list below or write your own</p>
 
         <ul class="mood-container">
-          <li v-for="(mood) in MOODS">
-            <MoodPopup :mood="mood.name" />
-          </li>          
+          <li v-for="moodlet in MOODS" :key="moodlet.name" @click="changeMoodletsList(moodlet.name)">
+            <MoodPopup :mood="moodlet.name" :isChosen="chosenMoods.includes(moodlet.name)" />
+          </li>
         </ul>
 
         <h3>Write down your own mood</h3>
@@ -52,10 +65,6 @@
   flex-wrap: wrap;
   align-items: start;
   align-content: start;
-  // display: grid;
-  // grid-template-columns: repeat(auto-fill, 100px);
-  // grid-template-rows: repeat(3, 1fr);
-  // grid-auto-flow: column;
   column-gap: 3rem;
   row-gap: 1rem;
 }

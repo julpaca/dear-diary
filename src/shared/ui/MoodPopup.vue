@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  const props = defineProps<{ mood: string }>()
+  const props = defineProps<{ mood: string, isChosen: boolean }>()  
 </script>
 
 <template>
-  <div class="popup">
+  <div class="popup" :class="{'chosen': isChosen}">
     <span>{{ mood }}</span>
   </div>
 </template>
@@ -23,5 +23,12 @@
       filter: brightness(0.95);
       transition: filter 0.2s ease-in-out;
     }
+
+  }
+
+  .chosen {
+    filter: brightness(1.1);
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0px rgba(109, 18, 18, 0.5);
   }
 </style>
