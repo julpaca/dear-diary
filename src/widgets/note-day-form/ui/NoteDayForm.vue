@@ -2,6 +2,7 @@
   import { MoodRange } from '..';
   import MoodPopup from '../../../shared/ui/MoodPopup.vue'
   import Input from '../../../shared/ui/Input.vue';
+  import { MOODS } from '../mocks/moods';
 </script>
 
 <template>
@@ -23,14 +24,11 @@
         </h2>
         <p>Choose the appropriate words from the list below or write your own</p>
 
-        <div class="mood-container">
-          <MoodPopup mood="very Gud :))" />
-          <MoodPopup mood="Gud :)" />
-          <MoodPopup mood=" kinda Gud :)" />
-          <MoodPopup mood="kinda Bed :(" />
-          <MoodPopup mood="Bed :(" />
-          <MoodPopup mood="very Bed :(" />
-        </div>
+        <ul class="mood-container">
+          <li v-for="(mood) in MOODS">
+            <MoodPopup :mood="mood.name" />
+          </li>          
+        </ul>
 
         <h3>Write down your own mood</h3>
         <Input @get-input-value="" />
