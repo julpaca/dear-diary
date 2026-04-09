@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="popup" :class="{'chosen': isChosen}">
+  <div class="popup" :class="{'chosen': isChosen, 'not-chosen': !isChosen}">
     <span>{{ mood }}</span>
   </div>
 </template>
@@ -19,11 +19,10 @@
     color: #A43636;
     background-color: #C5E1E2;
 
-    &:hover {
+    &.not-chosen.popup:hover {
       filter: brightness(0.95);
       transition: filter 0.2s ease-in-out;
     }
-
   }
 
   .chosen {

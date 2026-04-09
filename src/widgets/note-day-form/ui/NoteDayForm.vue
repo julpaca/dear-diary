@@ -13,8 +13,6 @@ const changeMoodletsList = (moodlet: string) => {
   } else {
     chosenMoods.value = [...chosenMoods.value, moodlet]
   }
-
-  console.log('chosenMoods: ', chosenMoods.value)
 }
 </script>
 
