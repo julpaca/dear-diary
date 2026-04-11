@@ -1,19 +1,17 @@
 <script setup lang="ts">
-import { MoodRange } from '..';
-import MoodPopup from '../../../shared/ui/MoodPopup.vue'
-import Input from '../../../shared/ui/Input.vue';
-import { MOODS } from '../mocks/moods';
-import { ref } from 'vue';
-
-const chosenMoods = ref<string[]>([])
-
-const changeMoodletsList = (moodlet: string) => {
-  if (chosenMoods.value.includes(moodlet)) {
-    chosenMoods.value = chosenMoods.value.filter(item => item !== moodlet)
-  } else {
-    chosenMoods.value = [...chosenMoods.value, moodlet]
+  import { ref } from 'vue';
+  import { MoodRange } from '..';
+  import { MOODS } from '../mocks/moods';
+  import { AddNewActivity, MoodPopup, Input } from '@/shared';
+  
+  const chosenMoods = ref<string[]>([])
+  const changeMoodletsList = (moodlet: string) => {
+    if (chosenMoods.value.includes(moodlet)) {
+      chosenMoods.value = chosenMoods.value.filter(item => item !== moodlet)
+    } else {
+      chosenMoods.value = [...chosenMoods.value, moodlet]
+    }
   }
-}
 </script>
 
 <template>
@@ -43,6 +41,13 @@ const changeMoodletsList = (moodlet: string) => {
 
         <h3>Write down your own mood</h3>
         <Input @get-input-value="" />
+
+        <label for="" class="label">
+          <h2 class="heading">What did you do for this day?</h2>
+          <!-- list of the дел (?) user wrote -->
+           <p>Did something new? Write it down!</p>
+           <AddNewActivity />
+        </label>
       </label>
 
     </form>
