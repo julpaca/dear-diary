@@ -2,7 +2,7 @@
   import { ref } from 'vue';
   import { MoodRange } from '..';
   import { MOODS } from '../mocks/moods';
-  import { AddNewActivity, MoodPopup, Input } from '@/shared';
+  import { AddNewActivity, MoodPopup, Input } from '@/shared/ui';
   
   const chosenMoods = ref<string[]>([])
   const changeMoodletsList = (moodlet: string) => {
