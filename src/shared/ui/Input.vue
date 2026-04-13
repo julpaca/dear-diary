@@ -1,19 +1,28 @@
 <script setup lang="ts">
   import { ref } from 'vue'
+  import { checkIfEmpty } from '../utils';
 
-  const input = ref()
-  const emit = defineEmits(["get-input-value"])
+  const model = defineModel<string>()
+  const emit = defineEmits<{ (e: 'enter', value: string): void}>()
+  const error = ref({ state: false, status: ''})
 
-  const emitValue = () => {
-    emit("get-input-value", input.value) //название функции(?), всё остальное - аргументы
+  const handleEmitValue = () => {
+    const value = model.value
+
+    if (checkIfEmpty(value)) {
+      error.value = { state: true, status: 'The field is empty'}
+    } else {
+      error.value = { state: false, status: ''}      
+      emit('enter', value!)
+    }
   }
-
 </script>
 
 <template>
   <input
-    v-model="input"
-    @keyup.enter="emitValue"
+    v-model="model"
+    @keyup.enter="handleEmitValue"
+    placeholder=""
   />
 </template>
 
