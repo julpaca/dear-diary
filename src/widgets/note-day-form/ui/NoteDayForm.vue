@@ -1,22 +1,27 @@
 <script setup lang="ts">
-  import { ref } from 'vue';
-  import { MoodRange } from '..';
-  import { MOODS } from '../mocks/moods';
-  import { AddNewActivity, MoodPopup, Input } from '@/shared/ui';
-  
-  const chosenMoods = ref<string[]>([])
-  const changeMoodletsList = (moodlet: string) => {
-    if (chosenMoods.value.includes(moodlet)) {
-      chosenMoods.value = chosenMoods.value.filter(item => item !== moodlet)
-    } else {
-      chosenMoods.value = [...chosenMoods.value, moodlet]
-    }
+import { ref } from 'vue';
+import { MoodRange } from '..';
+import { DAY_DESCRIPTORS, type dayDescriptor } from '../mocks/day-descriptors';
+import { AddNewActivity, MoodPopup, Input } from '@/shared/ui';
+import { switchItemInList, checkIfEmpty } from '@/shared/utils';
+
+const moodlets = ref<string[]>([])
+const dayDescriptors = ref<dayDescriptor[]>([])
+const dayDescriptorInput = ref<dayDescriptor>("")
+
+const changeDayDescriptorsList = (descriptor?: string) => {
+  if (!checkIfEmpty(descriptor)) {
+    dayDescriptors.value = switchItemInList<dayDescriptor>(dayDescriptors.value, descriptor!)
+  } else if (!checkIfEmpty(dayDescriptorInput.value)) {
+    dayDescriptors.value = switchItemInList<dayDescriptor>(dayDescriptors.value, dayDescriptorInput.value)
   }
+  console.log('dayDescriptors.value: ', dayDescriptors.value)
+}
 </script>
 
 <template>
   <div class="container">
-    <form class="form">
+    <form class="form" v-on:submit="e => e.preventDefault()">
 
       <label class="label" for="day-rate">
         <h2 class="heading">Rate this day from 1 to 10
@@ -34,19 +39,19 @@
         <p>Choose the appropriate words from the list below or write your own</p>
 
         <ul class="mood-container">
-          <li v-for="moodlet in MOODS" :key="moodlet.name" @click="changeMoodletsList(moodlet.name)">
-            <MoodPopup :mood="moodlet.name" :isChosen="chosenMoods.includes(moodlet.name)" />
+          <li v-for="descriptor in DAY_DESCRIPTORS" :key="descriptor" @click="changeDayDescriptorsList(descriptor)">
+            <MoodPopup :mood="descriptor" :isChosen="moodlets.includes(descriptor)" />
           </li>
         </ul>
 
-        <h3>Write down your own mood</h3>
-        <Input @get-input-value="" />
+        <p>Write down your own mood</p>
+        <Input v-model="dayDescriptorInput" @enter="changeDayDescriptorsList"/>
 
         <label for="" class="label">
           <h2 class="heading">What did you do for this day?</h2>
           <!-- list of the дел (?) user wrote -->
-           <p>Did something new? Write it down!</p>
-           <AddNewActivity />
+          <p>Did something new? Write it down!</p>
+          <AddNewActivity />
         </label>
       </label>
 
