@@ -5,6 +5,6 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
-
+declare module '@a1rth/css-normalize';
 /// <reference types="vite/client" />
 /// <reference types="vite-svg-loader" />
