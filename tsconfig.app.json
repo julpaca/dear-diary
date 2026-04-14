@@ -5,20 +5,18 @@
     "types": ["vite/client"],
     "composite": true,
     "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": false,  // <- переопределяем унаследованное
     "target": "esnext",
 
-    /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-      "paths": {
-        "@/*": [
-          "./src/*"
-        ]
-      }
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
